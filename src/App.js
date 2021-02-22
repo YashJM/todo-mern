@@ -19,7 +19,6 @@ function App() {
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
 
-  console.log(process.env);
 
   useEffect(() => {
     Axios.get('https://yjm-todolist.herokuapp.com/list').then((res) => {
