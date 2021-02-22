@@ -19,8 +19,10 @@ function App() {
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
 
+
+
   useEffect(() => {
-    Axios.get('/list').then((res) => {
+    Axios.get(`${process.env.REACT_APP_API_LINK}/list`).then((res) => {
       // const todolist = res.data;
       setTodolist(res.data);
     });
@@ -38,7 +40,7 @@ function App() {
   // CRUD OPERATIONS
 
   const addTask = async () => {
-    await Axios.post('/insert', {
+    await Axios.post(`${process.env.REACT_APP_API_LINK}/insert`, {
       task: task,
       isCompleted: isCompleted,
     });
@@ -46,7 +48,7 @@ function App() {
   }
 
   const deteTask = (id) => {
-    Axios.delete(`/delete/${id}`, { data: { id: id } });
+    Axios.delete(`${process.env.REACT_APP_API_LINK}/delete/${id}`, { data: { id: id } });
   }
 
   const updateTask = (id) => {
@@ -59,7 +61,7 @@ function App() {
 
   const sendUpdateReq = () => {
     setUpdatedTask(currentTask);
-    Axios.put("/update", { id: id, updatedTask: updatedTask });
+    Axios.put(`${process.env.REACT_APP_API_LINK}/update`, { id: id, updatedTask: updatedTask });
     setOpen(false);
   }
 
