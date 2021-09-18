@@ -1,4 +1,4 @@
-# My-Blog-MERN
+# TODO LIST - MERN
 <p align="center">
   <strong>A simple TODO list App created with React.Js ⚛️ , Node.js and MongoDB which performs some of the basic CRUD operations</strong>
 </p>
