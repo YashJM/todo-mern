@@ -38,7 +38,8 @@ function App() {
 
   // CRUD OPERATIONS
 
-  const addTask = async () => {
+  const addTask = async (e) => {
+    e.preventDefault();
     await Axios.post('https://yjm-todolist.herokuapp.com/insert', {
       task: task,
       isCompleted: isCompleted,
@@ -60,25 +61,27 @@ function App() {
 
   const sendUpdateReq = () => {
     setUpdatedTask(currentTask);
-    Axios.put("https://yjm-todolist.herokuapp.com/update", { id: id, updatedTask: updatedTask });
+    Axios.put('https://yjm-todolist.herokuapp.com/update', { id: id, updatedTask: updatedTask });
     setOpen(false);
   }
 
   return (
     <div className="App">
       <h1>Todo List App</h1>
-      <FormControl>
-        <TextField value={task} hiddenLabel style={{ margin: '10px' }} variant="filled" onChange={(e) => { setTask(e.target.value); }} placeholder="Add new Todo" type="text"></TextField>
-        <Button type="submit" style={{ margin: '10px' }} color="primary" variant="contained" onClick={addTask}>Add new Todo</Button>
-      </FormControl>
-      <Grid>
-        {
-          Todolist.map((todo, key) => {
-            return (<Todo key={key} todo={todo} deteTask={deteTask} updateTask={updateTask} />);
-          })
-        }
-      </Grid>
-      <EditDialog open={open} handleClose={handleClose} setUpdatedTask={setUpdatedTask} sendUpdateReq={sendUpdateReq} currentTask={currentTask} />
+      <form onSubmit={addTask}>
+        <FormControl>
+          <TextField value={task} hiddenLabel style={{ margin: '10px' }} variant="filled" onChange={(e) => { setTask(e.target.value); }} placeholder="Add new Todo" type="text"></TextField>
+          <Button type="submit" style={{ margin: '10px' }} color="primary" variant="contained" onClick={addTask}>Add new Todo</Button>
+        </FormControl>
+        <Grid>
+          {
+            Todolist.map((todo, key) => {
+              return (<Todo key={key} todo={todo} deteTask={deteTask} updateTask={updateTask} />);
+            })
+          }
+        </Grid>
+        <EditDialog open={open} handleClose={handleClose} setUpdatedTask={setUpdatedTask} sendUpdateReq={sendUpdateReq} currentTask={currentTask} />
+      </form>
     </div >
   );
 }

@@ -11,19 +11,19 @@ import EditIcon from '@material-ui/icons/Edit';
 function Todo({ todo, deteTask, updateTask }) {
     return (
         <Card className="todo">
-            <CardActions>
-                <IconButton onClick={() => deteTask(todo._id)} color="primary">
-                    <DeleteForeverIcon />
-                </IconButton>|
-                <IconButton onClick={() => updateTask(todo._id)} color="primary">
-                    <EditIcon />
-                </IconButton>|
-            </CardActions>
             <CardContent>
                 <Typography style={{ overflowWrap: "anywhere" }} >
                     {todo.task}
                 </Typography>
             </CardContent>
+            <CardActions>
+                <IconButton onClick={() => updateTask(todo._id)} color="primary">
+                    <EditIcon />
+                </IconButton>|
+                <IconButton onClick={() => deteTask(todo._id)} color="primary">
+                    <DeleteForeverIcon />
+                </IconButton>
+            </CardActions>
         </Card>
 
     )
