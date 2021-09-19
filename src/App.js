@@ -22,7 +22,7 @@ function App() {
       // const todolist = res.data;
       setTodolist(res.data);
     });
-  }, [Todolist, task]);
+  }, [Todolist]);
 
   const handleClickOpen = () => {
     setOpen(true);
