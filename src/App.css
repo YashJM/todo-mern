@@ -1,4 +1,5 @@
 .App {
+  padding-top: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,20 +7,21 @@
   text-align: center;
   font-family: 'Roboto Slab', sans-serif;
 
-
-
 }
+
 .todo {
   display: flex;
   margin: 10px;
   max-width: 450px;
   justify-content: space-between;
+
 }
 
 .form {
   display: flex;
   flex-direction: column;
   margin: 10px;
+
 }
 
 .custom-input {
@@ -30,4 +32,14 @@
   border: 1px solid darkgrey;
   border-radius: 5px
 
+}
+
+.custom-padding-bottom {
+  padding-bottom: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .custom-form-control {
+    min-width: 300px !important;
+  }
 }

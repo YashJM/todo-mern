@@ -70,9 +70,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todo List App</h1>
+      <h1 className="custom-padding-bottom">Todo List App</h1>
       <form onSubmit={addTask}>
-        <FormControl style={{ minWidth: "400px" }}>
+        <FormControl className="custom-form-control" style={{ minWidth: "400px" }}>
           <input className="custom-input" value={task} onChange={(e) => { setTask(e.target.value); }} placeholder="Add new Todo" type="text"></input>
           <Button type="submit" style={{ margin: '10px' }} color="primary" variant="contained" onClick={addTask}>Add new Todo</Button>
         </FormControl>
