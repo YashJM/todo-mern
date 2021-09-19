@@ -4,6 +4,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-family: 'Roboto Slab', sans-serif;
+
+
+
 }
 .todo {
   display: flex;
@@ -16,4 +20,14 @@
   display: flex;
   flex-direction: column;
   margin: 10px;
+}
+
+.custom-input {
+  font-family: 'Roboto Slab', sans-serif;
+  height: 30px;
+  padding: 10px;
+  border: none;
+  border: 1px solid darkgrey;
+  border-radius: 5px
+
 }

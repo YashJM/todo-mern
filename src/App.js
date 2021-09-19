@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { FormControl } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import Snackbar from '@mui/material/Snackbar';
 
 
 
@@ -18,7 +19,6 @@ function App() {
   const [updatedTask, setUpdatedTask] = useState("");
   const [id, setId] = useState();
   const [open, setOpen] = useState(false);
-
 
   useEffect(() => {
     Axios.get('https://yjm-todolist.herokuapp.com/list').then((res) => {
@@ -40,11 +40,17 @@ function App() {
 
   const addTask = async (e) => {
     e.preventDefault();
-    await Axios.post('https://yjm-todolist.herokuapp.com/insert', {
-      task: task,
-      isCompleted: isCompleted,
-    });
-    setTask("");
+    if (task !== '') {
+      await Axios.post('https://yjm-todolist.herokuapp.com/insert', {
+        task: task,
+        isCompleted: isCompleted,
+      });
+      setTask("");
+    }
+    else {
+      alert("Tast is needed :)");
+    }
+
   }
 
   const deteTask = (id) => {
@@ -69,17 +75,15 @@ function App() {
     <div className="App">
       <h1>Todo List App</h1>
       <form onSubmit={addTask}>
-        <FormControl>
-          <TextField value={task} hiddenLabel style={{ margin: '10px' }} variant="filled" onChange={(e) => { setTask(e.target.value); }} placeholder="Add new Todo" type="text"></TextField>
+        <FormControl style={{ minWidth: "400px" }}>
+          <input className="custom-input" value={task} onChange={(e) => { setTask(e.target.value); }} placeholder="Add new Todo" type="text"></input>
           <Button type="submit" style={{ margin: '10px' }} color="primary" variant="contained" onClick={addTask}>Add new Todo</Button>
         </FormControl>
-        <Grid>
-          {
-            Todolist.map((todo, key) => {
-              return (<Todo key={key} todo={todo} deteTask={deteTask} updateTask={updateTask} />);
-            })
-          }
-        </Grid>
+        {
+          Todolist.map((todo, key) => {
+            return (<Todo key={key} todo={todo} deteTask={deteTask} updateTask={updateTask} />);
+          })
+        }
         <EditDialog open={open} handleClose={handleClose} setUpdatedTask={setUpdatedTask} sendUpdateReq={sendUpdateReq} currentTask={currentTask} />
       </form>
     </div >
